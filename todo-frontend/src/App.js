@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import { FaTasks } from "react-icons/fa";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -56,49 +57,54 @@ function App() {
 };
 
   return (
-    <div className="container">
-      <h1>Task Manager 🚀</h1>
+  <div className="App">
+    <h1 className="heading">
+        <FaTasks className="icon" />
+          Task Manager
+    </h1>
 
-      <div className="form">
-        <input
-          type="text"
-          placeholder="Enter Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+    <div>
+  <input
+    type="text"
+    placeholder="Enter Title"
+    value={title}
+    onChange={(e) => setTitle(e.target.value)}
+  />
 
-        <input
-          type="text"
-          placeholder="Enter Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+  <input
+    type="text"
+    placeholder="Enter Description"
+    value={description}
+    onChange={(e) => setDescription(e.target.value)}
+  />
 
-        <button onClick={addTask}>Add Task</button>
-      </div>
+  <button onClick={addTask}>Add Task</button>
 
-      <div className="task-list">
-        {tasks.map((task) => (
-          <div className="card" key={task.id}>
-            <h3>{task.title}</h3>
-            <p>{task.description}</p>
+  <br /><br />
+</div>
 
-            <span
-                className={task.completed ? "done" : "pending"}
-                onClick={() => toggleTask(task)}
-                style={{ cursor: "pointer" }}
-           >
-                    {task.completed ? "✔ Done" : "❌ Pending"}
-            </span>
+    <div className="task-list">
+      {tasks.map((task) => (
+        <div className="card" key={task.id}>
+          <h3>{task.title}</h3>
+          <p>{task.description}</p>
 
-            <button onClick={() => deleteTask(task.id)}>
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
+          <span
+            className={task.completed ? "done" : "pending"}
+            onClick={() => toggleTask(task)}
+            style={{ cursor: "pointer" }}
+          >
+            {task.completed ? "✔ Done" : "❌ Pending"}
+          </span>
+
+          <br /><br />
+
+          <button onClick={() => deleteTask(task.id)}>Delete</button>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 }
 
 export default App;
